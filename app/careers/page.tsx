@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NE, I } from "@/components/Icons";
 import { ApplyForm } from "@/components/Forms";
 import { JOBS } from "@/lib/data";
+import { JobFilter } from "@/components/Interactive";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -26,11 +27,7 @@ export default function Careers() {
         <div className="in">
           <span className="chip lbl">Open roles</span>
           <div className="hd rv" style={{ marginBottom: 40 }}><h2>Roles we&apos;re hiring for</h2><p>Don&apos;t see your role? <b>Send a general application</b> and we&apos;ll match you when one opens.</p></div>
-          <div className="jobs rv" style={{ background: "#F5F5F6" }}>
-            {JOBS.map(j => (
-              <a href="#apply" className="job" key={j.t}><div><b>{j.t}</b><small>{j.m}</small></div><div className="tags"><span className="chip w">{j.v}</span><span className="ib"><NE /></span></div></a>
-            ))}
-          </div>
+          <div className="rv"><JobFilter jobs={JOBS} /></div>
         </div>
       </section>
 
@@ -39,10 +36,10 @@ export default function Careers() {
           <span className="chip w lbl">Working with Coalesca</span>
           <div className="hd rv"><h2>What you get when we place you</h2><p>Whether you join on contract or permanently, <b>we look after the details.</b></p></div>
           <div className="perks">
-            <div className="perk rv d1"><span className="ic"><I.list /></span><b>Salary on time</b><p>Contract staff are paid on our payroll, every month.</p></div>
-            <div className="perk rv d2"><span className="ic"><I.shield /></span><b>Statutory benefits</b><p>PF, ESI and other benefits as applicable.</p></div>
-            <div className="perk rv d3"><span className="ic"><I.building /></span><b>Leading enterprises</b><p>Roles at multinationals, GCCs and growing companies.</p></div>
-            <div className="perk rv d4"><span className="ic"><I.person /></span><b>A recruiter in your corner</b><p>Interview prep and feedback at every stage.</p></div>
+            <div data-tilt className="perk rv d1"><span className="ic"><I.list /></span><b>Salary on time</b><p>Contract staff are paid on our payroll, every month.</p></div>
+            <div data-tilt className="perk rv d2"><span className="ic"><I.shield /></span><b>Statutory benefits</b><p>PF, ESI and other benefits as applicable.</p></div>
+            <div data-tilt className="perk rv d3"><span className="ic"><I.building /></span><b>Leading enterprises</b><p>Roles at multinationals, GCCs and growing companies.</p></div>
+            <div data-tilt className="perk rv d4"><span className="ic"><I.person /></span><b>A recruiter in your corner</b><p>Interview prep and feedback at every stage.</p></div>
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Arrow } from "./Icons";
+import Motion from "./Motion";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -24,38 +25,16 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   const path = usePathname() || "/";
   const [open, setOpen] = useState(false);
 
-  // Scroll reveal for any element with .rv
-  useEffect(() => {
-    setOpen(false);
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".rv:not(.seen)"));
-    if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("seen")); return; }
-    const io = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("seen"); io.unobserve(e.target); } }),
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
-    );
-    els.forEach(e => io.observe(e));
-    // Count-up numbers
-    const nums = Array.from(document.querySelectorAll<HTMLElement>("[data-count]"));
-    const io2 = new IntersectionObserver(entries => entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const el = e.target as HTMLElement; io2.unobserve(el);
-      const end = parseFloat(el.dataset.count || "0"); const dec = (el.dataset.count || "").split(".")[1]?.length || 0;
-      const pre = el.dataset.pre || ""; const suf = el.dataset.suf || ""; const t0 = performance.now();
-      const step = (t: number) => {
-        const p = Math.min(1, (t - t0) / 1400); const v = end * (1 - Math.pow(1 - p, 3));
-        el.textContent = pre + v.toLocaleString("en-IN", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }), { threshold: 0.4 });
-    nums.forEach(n => io2.observe(n));
-    return () => { io.disconnect(); io2.disconnect(); };
-  }, [path]);
+  const [intro, setIntro] = useState(true);
+  useEffect(() => { setOpen(false); }, [path]);
+  useEffect(() => { const t = setTimeout(() => setIntro(false), 2400); return () => clearTimeout(t); }, []);
 
   const isOn = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
 
   return (
-    <div className={`page ${themeFor(path)}`}>
+    <div className={`page ${themeFor(path)} ${intro ? "boot" : ""}`}>
+      <Motion />
+      {intro && <div className="intro" aria-hidden="true"><img src="/brand/mark-white.svg" alt="" width={64} height={64} /><span>Coalesca</span></div>}
       <header className="in nav">
         <Link href="/" className="logo" aria-label="Coalesca Technologies home">
           <img src="/brand/logo.svg" alt="Coalesca Technologies" width={216} height={40} />

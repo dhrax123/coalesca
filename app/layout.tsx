@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@fontsource-variable/inter-tight";
 import "./globals.css";
 import "./pages.css";
+import "./motion.css";
 import Shell from "@/components/Shell";
 
 export const metadata: Metadata = {

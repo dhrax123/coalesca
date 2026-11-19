@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, NE, Tick, Spark } from "@/components/Icons";
-import { v } from "@/components/v";
+import { RotWord, CursorList, DragReel } from "@/components/Interactive";
 
 export const metadata: Metadata = {
   title: "Digital performance marketing",
@@ -20,24 +20,19 @@ const WORDS = ["Performance ads", "Creative", "Social", "Influencers", "SEO", "L
 export default function Marketing() {
   return (
     <>
-      <section className="hero tall">
-        <h1><span className="ln"><span>Growth</span></span><span className="ln"><span>you <span className="g">can</span></span></span><span className="ln"><span>measure</span></span></h1>
-        <p className="sub">Performance campaigns, ad creative and content that turn spend into <b>qualified leads</b>, reported every month in <b>plain numbers.</b></p>
-        <div className="cta"><Link href="/contact" className="pbtn">Plan a campaign<span className="ib"><Arrow /></span></Link><Link href="/contact" className="gbtn">Get a free audit</Link></div>
-        <div className="stage">
-          <div className="capsule tall" style={{ backgroundImage: "url(/img/tokyo.jpg)" }} />
-          <div className="fc dk kpi" style={v({ "--rx": "512px", "--y": "220px", "--r": "-4deg", "--d": ".7s", "--mx": "4%", "--my": "30px", width: "230px" })}><small>Qualified leads, 30 days</small><span className="big-n" data-count="1284">1,284</span><div className="d">+38% vs last month</div></div>
-          <div className="fc kpi" style={v({ "--rx": "272px", "--y": "390px", "--r": "2deg", "--d": ".85s", "--mx": "34%", "--my": "220px", "--sx": "16%", "--sy": "230px", width: "300px" })}>
-            <div style={{ display: "flex", justifyContent: "space-between" }}><small>Leads per week</small><small style={{ color: "var(--growth)" }}>● This month</small></div>
-            <svg className="draw" width="100%" height="80" viewBox="0 0 260 80" style={{ marginTop: 10 }}><path d="M0 70 C40 66 70 58 100 48 S170 30 200 22 S240 10 260 6 L260 80 L0 80Z" fill="#FFB23F" opacity=".15" /><path d="M0 74 C60 72 120 66 180 60 S240 54 260 52" stroke="#D5D8DD" strokeWidth="2" fill="none" /><path className="ln" d="M0 70 C40 66 70 58 100 48 S170 30 200 22 S240 10 260 6" stroke="#FFB23F" strokeWidth="3" fill="none" /></svg>
+      <section className="khero">
+        <div className="top"><span className="chip">Digital performance marketing</span><span style={{ fontSize: 14, color: "var(--mute)" }}>Google, Meta, LinkedIn, YouTube</span></div>
+        <h1><span className="ln"><span>Growth you</span></span><span className="ln"><span><span className="g">can</span> <RotWord words={["measure", "scale", "track", "prove"]} /></span></span></h1>
+        <div className="row2">
+          <div style={{ paddingBottom: 40 }}>
+            <p className="sub">Performance campaigns, ad creative and content that turn spend into <b>qualified leads</b>, reported every month in <b>plain numbers.</b></p>
+            <div className="cta"><Link href="/contact" className="pbtn">Plan a campaign<span className="ib"><Arrow /></span></Link><Link href="/contact" className="gbtn">Get a free audit</Link></div>
           </div>
-          <div className="fc kpi hs" style={v({ "--rx": "52px", "--y": "160px", "--r": "3deg", "--d": "1s", "--mx": "64%", "--my": "60px", width: "190px" })}><small>Cost per lead</small><span className="big-n">₹412</span><div className="d">−21% this month</div></div>
-        </div>
-        <div className="hrow">
-          <div className="trust"><div className="ph"><span style={{ backgroundImage: "url(/img/desk.jpg)" }} /><span style={{ backgroundImage: "url(/img/tokyo.jpg)" }} /><span style={{ backgroundImage: "url(/img/glass.jpg)" }} /></div><div><small>Google, Meta, LinkedIn, YouTube</small><b>Every channel, one report</b></div></div>
-          <div className="stats">
-            <div className="stat"><b>4.6×</b><small>Return on ad spend, sample</small><span className="tick"><Tick /></span></div>
-            <div className="stat a"><b>Monthly</b><small>Reports in plain numbers</small><span className="tick"><Tick /></span></div>
+          <div className="kdash" aria-label="Illustrative campaign report">
+            <div className="k"><small>Qualified leads</small><b data-count="1284">1,284</b><em>+38% vs last month</em></div>
+            <div className="k"><small>Cost per lead</small><b data-count="412" data-pre="₹">₹412</b><em>−21% vs last month</em></div>
+            <div className="k"><small>Leads per week, sample</small>
+              <svg width="100%" height="90" viewBox="0 0 300 90" preserveAspectRatio="none" style={{ marginTop: 8 }}><path d="M0 80 C50 76 90 66 130 54 S210 30 250 20 S285 10 300 6 L300 90 L0 90Z" fill="#FFB23F" opacity=".14" /><path d="M0 84 C80 80 160 74 220 68 S280 62 300 60" stroke="#3A4656" strokeWidth="2" fill="none" /><path className="ln" d="M0 80 C50 76 90 66 130 54 S210 30 250 20 S285 10 300 6" stroke="#FFB23F" strokeWidth="3" fill="none" /></svg></div>
           </div>
         </div>
       </section>
@@ -50,29 +45,22 @@ export default function Marketing() {
         <div className="in">
           <span className="chip lbl">What we do</span>
           <div className="hd rv"><h2>Everything a campaign needs, under one roof</h2><p>Strategy, creative, media buying and reporting sit with <b>one team</b>, so the ads you run and the results you see <b>stay connected.</b></p></div>
-          <div className="svcl">
-            {SERVICES.map((s, i) => (
-              <Link href="/contact" className={`srow rv ${i === 0 ? "on" : ""}`} key={s.t}>
-                <span className="th" style={{ backgroundImage: `url(/img/${s.img}.jpg)` }} /><h3>{s.t}</h3>
-                <div><p>{s.p}</p><div className="tg">{s.tg.map(t => <span key={t}>{t}</span>)}</div></div>
-                <span className="ib"><NE /></span>
-              </Link>
-            ))}
-          </div>
+          <div className="rv"><CursorList items={SERVICES} /></div>
         </div>
       </section>
 
       <section className="sec white">
         <div className="in">
           <span className="chip lbl">Formats we produce</span>
-          <div className="hd rv"><h2>Creative for every placement</h2><p>One campaign idea, adapted to <b>each platform&apos;s format</b>, so it looks native wherever it runs.</p></div>
-          <div className="fmts">
-            <div className="ad rv" style={{ gridRow: "span 2", backgroundImage: "url(/img/tokyo.jpg)" }}><span className="ochip tl">Reel, 9:16</span><div className="adc"><b>Ship features, not tickets.</b><span style={{ fontSize: 12.5, opacity: .8, display: "block", marginTop: 6 }}>Product launch, Instagram</span><span className="b2">Start free trial</span></div></div>
-            <div className="ad rv d1" style={{ backgroundImage: "url(/img/desk.jpg)" }}><span className="ochip tl">Static, 1:1</span><div className="adc"><b>Leads up. Costs down.</b><span className="b2">Book a demo</span></div></div>
-            <div className="ad rv d2" style={{ backgroundImage: "url(/img/glass.jpg)" }}><span className="ochip tl">YouTube, 16:9</span><div className="adc"><b>We&apos;re hiring engineers in Bengaluru</b><span style={{ fontSize: 12.5, opacity: .8, display: "block", marginTop: 6 }}>Employer brand video</span></div></div>
-            <div className="ad nosh rv d1" style={{ background: "#FFB23F", color: "var(--ink)" }}><span className="chip w tl">Carousel, 4:5</span><div className="adc"><b>5 signs it&apos;s time to outsource IT support</b><div style={{ display: "flex", gap: 4, marginTop: 14 }}><i style={{ width: 20, height: 5, borderRadius: 3, background: "var(--ink)" }} /><i style={{ width: 7, height: 5, borderRadius: 3, background: "rgba(11,18,34,.3)" }} /><i style={{ width: 7, height: 5, borderRadius: 3, background: "rgba(11,18,34,.3)" }} /></div></div></div>
-            <div className="serp rv d2"><span className="chip">Search ad</span><div className="u"><b style={{ color: "var(--ink)", fontWeight: 500 }}>Sponsored</b> &nbsp;example.in/cloud-migration</div><div className="t">Cloud migration for enterprises | Free assessment</div><div className="d">Move workloads to AWS or Azure with planned downtime windows, fixed-price plans and support after go-live.</div></div>
-          </div>
+          <div className="hd rv"><h2>Creative for every placement</h2><p>One campaign idea, adapted to <b>each platform&apos;s format</b>. Drag to browse.</p></div>
+          <DragReel>
+            <div className="ad" style={{ backgroundImage: "url(/img/tokyo.jpg)" }}><span className="ochip tl">Reel, 9:16</span><div className="adc"><b>Ship features, not tickets.</b><span style={{ fontSize: 12.5, opacity: .8, display: "block", marginTop: 6 }}>Product launch, Instagram</span><span className="b2">Start free trial</span></div></div>
+            <div className="ad sq" style={{ backgroundImage: "url(/img/desk.jpg)" }}><span className="ochip tl">Static, 1:1</span><div className="adc"><b>Leads up. Costs down.</b><span className="b2">Book a demo</span></div></div>
+            <div className="ad nosh" style={{ background: "#FFB23F", color: "var(--ink)", width: 350 }}><span className="chip w tl">Carousel, 4:5</span><div className="adc"><b style={{ fontSize: 34 }}>5 signs it&apos;s time to outsource IT support</b><div style={{ display: "flex", gap: 4, marginTop: 14 }}><i style={{ width: 20, height: 5, borderRadius: 3, background: "var(--ink)" }} /><i style={{ width: 7, height: 5, borderRadius: 3, background: "rgba(11,18,34,.3)" }} /><i style={{ width: 7, height: 5, borderRadius: 3, background: "rgba(11,18,34,.3)" }} /></div></div></div>
+            <div className="ad wd" style={{ backgroundImage: "url(/img/glass.jpg)" }}><span className="ochip tl">YouTube, 16:9</span><div className="adc"><b>We&apos;re hiring engineers in Bengaluru</b><span style={{ fontSize: 12.5, opacity: .8, display: "block", marginTop: 6 }}>Employer brand video</span></div></div>
+            <div className="serp"><span className="chip">Search ad</span><div className="u"><b style={{ color: "var(--ink)", fontWeight: 500 }}>Sponsored</b> &nbsp;example.in/cloud-migration</div><div className="t">Cloud migration for enterprises | Free assessment</div><div className="d">Move workloads to AWS or Azure with planned downtime windows, fixed-price plans and support after go-live.</div></div>
+            <div className="ad" style={{ backgroundImage: "url(/img/city.jpg)" }}><span className="ochip tl">Story, 9:16</span><div className="adc"><b>New store. Grand opening Saturday.</b><span className="b2">Get directions</span></div></div>
+          </DragReel>
           <p style={{ fontSize: 12.5, color: "var(--mute2)", marginTop: 20 }}>Sample formats for illustration. Brands and offers shown are not client work.</p>
         </div>
       </section>
@@ -81,10 +69,13 @@ export default function Marketing() {
         <div className="in">
           <span className="chip w lbl">How a campaign runs</span>
           <div className="hd rv"><h2>From audit to report in five clear steps</h2><p>You know <b>what&apos;s happening each week</b> and what you&apos;re getting for your spend.</p></div>
-          <div className="steps">
-            {[["Week 1", "Audit", "Accounts, website, tracking and competitors, reviewed."], ["Week 1", "Plan", "Audiences, channels, budget split and targets."], ["Week 2", "Create", "Ads, copy and landing pages, ready for approval."], ["Ongoing", "Launch and optimise", "Live campaigns, tested and rebalanced weekly."], ["Every month", "Report", "Leads, cost and return, with next month's plan."]].map(([w, t, p], i) => (
-              <div className={`step rv d${Math.min(i + 1, 4)} ${i === 4 ? "on" : ""}`} key={t}><span className="n">0{i + 1}</span><span className="w">{w}</span><h4>{t}</h4><p>{p}</p></div>
-            ))}
+          <div className="pline" data-scroll="view" data-steps="5">
+            <div className="rail"><i /></div>
+            <div className="st5">
+              {[["Week 1", "Audit", "Accounts, website, tracking and competitors, reviewed."], ["Week 1", "Plan", "Audiences, channels, budget split and targets."], ["Week 2", "Create", "Ads, copy and landing pages, ready for approval."], ["Ongoing", "Launch and optimise", "Live campaigns, tested and rebalanced weekly."], ["Every month", "Report", "Leads, cost and return, with next month's plan."]].map(([w, t, d], i) => (
+                <div className="s" key={t}><span className="dot">0{i + 1}</span><h4>{t}</h4><p>{d}</p><span className="w">{w}</span></div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -114,8 +105,8 @@ export default function Marketing() {
           <span className="chip lbl">Better with Coalesca</span>
           <div className="hd rv"><h2>Marketing that works with the rest of the business</h2><p>Because we also <b>hire talent</b> and <b>deliver IT projects</b>, our campaigns support goals beyond sales.</p></div>
           <div className="tog">
-            <div className="tc rv" style={{ backgroundImage: "url(/img/desk.jpg)" }}><div style={{ display: "flex", gap: 6 }}><span className="ochip">IT staffing</span><span className="ochip">Marketing</span></div><div><h3>Employer branding and hiring campaigns</h3><p>Recruitment ads and employer content that bring better applicants to the roles we&apos;re filling for you.</p></div></div>
-            <div className="tc rv d2" style={{ backgroundImage: "url(/img/city.jpg)" }}><div style={{ display: "flex", gap: 6 }}><span className="ochip">Infrastructure</span><span className="ochip">Marketing</span></div><div><h3>Launch campaigns for new sites</h3><p>When we roll out the technology for a new store or office, we can run the local campaign that announces it.</p></div></div>
+            <div className="tc imr" style={{ backgroundImage: "url(/img/desk.jpg)" }}><div style={{ display: "flex", gap: 6 }}><span className="ochip">IT staffing</span><span className="ochip">Marketing</span></div><div><h3>Employer branding and hiring campaigns</h3><p>Recruitment ads and employer content that bring better applicants to the roles we&apos;re filling for you.</p></div></div>
+            <div className="tc imr" style={{ backgroundImage: "url(/img/city.jpg)" }}><div style={{ display: "flex", gap: 6 }}><span className="ochip">Infrastructure</span><span className="ochip">Marketing</span></div><div><h3>Launch campaigns for new sites</h3><p>When we roll out the technology for a new store or office, we can run the local campaign that announces it.</p></div></div>
           </div>
         </div>
       </section>

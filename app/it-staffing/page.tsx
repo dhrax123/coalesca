@@ -2,21 +2,37 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Tick, I } from "@/components/Icons";
 import { v } from "@/components/v";
+import { RoleTabs } from "@/components/Interactive";
 
 export const metadata: Metadata = {
   title: "IT staffing and defence veteran placement",
   description: "Screened IT professionals on contract or permanent roles, plus permanent placement of defence veterans. Every candidate clears 2–3 rounds before you see a profile.",
 };
 
+const PROFILES = [
+  { i: "AK", c: "#22B5A2", r: "Senior DevOps engineer", m: "7 yrs, Bengaluru", s: ["AWS", "K8s"] },
+  { i: "SM", c: "#4B69FF", r: "Java full-stack developer", m: "6 yrs, Pune", s: ["Java", "React"] },
+  { i: "RV", c: "#0B1222", r: "Network engineer", m: "8 yrs, Hyderabad", s: ["CCNP", "SD-WAN"] },
+  { i: "PN", c: "#5EB6C6", r: "SOC analyst", m: "4 yrs, Chennai", s: ["SIEM", "IR"] },
+  { i: "DG", c: "#FFB23F", r: "Data engineer", m: "5 yrs, Bengaluru", s: ["Spark", "SQL"] },
+  { i: "MK", c: "#22B5A2", r: "QA automation engineer", m: "6 yrs, Noida", s: ["Selenium", "API"] },
+  { i: "AR", c: "#4B69FF", r: "Cloud architect", m: "11 yrs, Mumbai", s: ["Azure", "IaC"] },
+  { i: "KS", c: "#0B1222", r: "IT support lead", m: "9 yrs, Pune", s: ["ITIL", "L3"] },
+  { i: "VT", c: "#5EB6C6", r: "Scrum master", m: "8 yrs, Gurugram", s: ["Agile", "Jira"] },
+  { i: "NB", c: "#FFB23F", r: "Python developer", m: "3 yrs, Kochi", s: ["Django", "APIs"] },
+  { i: "HJ", c: "#22B5A2", r: "Security supervisor", m: "Veteran, 18 yrs", s: ["Ops", "Security"] },
+  { i: "TL", c: "#4B69FF", r: "Business analyst", m: "6 yrs, Bengaluru", s: ["BRD", "SQL"] },
+];
+
 const ROLES = [
-  { ic: <I.code />, t: "Software developers", p: "Product and enterprise engineers across the stack.", s: ["Java", ".NET", "Python", "React"], f: true },
-  { ic: <I.cloud />, t: "Cloud and DevOps", p: "Engineers who build, automate and run infrastructure.", s: ["AWS", "Azure", "Kubernetes"] },
-  { ic: <I.db />, t: "Data and AI", p: "Pipelines, dashboards and machine learning models.", s: ["SQL", "Spark", "Power BI"] },
-  { ic: <I.shield />, t: "Cybersecurity", p: "SOC, identity and compliance specialists.", s: ["SOC", "IAM", "VAPT"] },
-  { ic: <I.monitor />, t: "IT support", p: "Desktop, network and system administrators.", s: ["L1–L3", "Windows", "ITIL"] },
-  { ic: <I.qa />, t: "Quality assurance", p: "Manual and automation testers for every platform.", s: ["Selenium", "Appium"] },
-  { ic: <I.bars />, t: "Project managers", p: "Scrum masters and delivery leads who keep releases on time.", s: ["Agile", "PMP"] },
-  { ic: <I.search />, t: "Business analysts", p: "Turning business needs into clear requirements.", s: ["BRD", "Jira"] },
+  { ic: <I.code />, t: "Software developers", n: "Most requested", p: "Product and enterprise engineers across the stack.", s: ["Java", ".NET", "Python", "React"] },
+  { ic: <I.cloud />, t: "Cloud and DevOps", n: "Infra and platform", p: "Engineers who build, automate and run infrastructure.", s: ["AWS", "Azure", "Kubernetes"] },
+  { ic: <I.db />, t: "Data and AI", n: "Analytics and ML", p: "Pipelines, dashboards and machine learning models.", s: ["SQL", "Spark", "Power BI"] },
+  { ic: <I.shield />, t: "Cybersecurity", n: "Security", p: "SOC, identity and compliance specialists.", s: ["SOC", "IAM", "VAPT"] },
+  { ic: <I.monitor />, t: "IT support", n: "Operations", p: "Desktop, network and system administrators.", s: ["L1–L3", "Windows", "ITIL"] },
+  { ic: <I.qa />, t: "Quality assurance", n: "Testing", p: "Manual and automation testers for every platform.", s: ["Selenium", "Appium"] },
+  { ic: <I.bars />, t: "Project managers", n: "Delivery", p: "Scrum masters and delivery leads who keep releases on time.", s: ["Agile", "PMP"] },
+  { ic: <I.search />, t: "Business analysts", n: "Requirements", p: "Turning business needs into clear requirements.", s: ["BRD", "Jira"] },
 ];
 
 const FAQ = [
@@ -30,31 +46,29 @@ const FAQ = [
 export default function Staffing() {
   return (
     <>
-      <section className="hero">
-        <h1><span className="ln"><span>Screened IT</span></span><span className="ln"><span>talent, <span className="g">ready</span></span></span><span className="ln"><span><span className="g">for</span> your site</span></span></h1>
-        <p className="sub">Developers, engineers and IT specialists who&apos;ve <b>cleared our technical and fit rounds</b> before you see a profile. <b>Contract</b> or <b>permanent</b>.</p>
+      <section className="thero">
+        <span className="chip">IT staffing and recruitment</span>
+        <h1><span className="ln"><span>Screened IT talent,</span></span><span className="ln"><span><span className="g">ready for</span> your site</span></span></h1>
+        <p className="sub">Developers, engineers and IT specialists who&apos;ve <b>cleared our technical and fit rounds</b> before you see a profile. Hire on <b>contract</b> or <b>permanently</b>.</p>
         <div className="cta"><Link href="/contact" className="pbtn">Hire talent<span className="ib"><Arrow /></span></Link><a href="#how" className="gbtn">How we screen</a></div>
-        <div className="stage">
-          <div className="capsule" style={{ backgroundImage: "url(/img/code.jpg)" }} />
-          <div className="fc sl" style={v({ "--rx": "252px", "--y": "190px", "--r": "-2deg", "--d": ".7s", "--mx": "6%", "--my": "40px" })}>
-            <div className="h"><div><small>Your shortlist</small><b>Senior DevOps engineer</b></div><span className="chip" style={{ background: "#EAF8F5", color: "#1B8577" }}>3 profiles</span></div>
-            {[
-              ["AK", "#22B5A2", "Arjun K.", "7 yrs, Bengaluru, AWS, Kubernetes", 3],
-              ["SM", "#4B69FF", "Sneha M.", "6 yrs, Pune, Azure, CI/CD", 3],
-              ["RV", "#0B1222", "Rahul V.", "8 yrs, Hyderabad, GCP, Linux", 2],
-            ].map(([a, c, n, m, r]) => (
-              <div className="cd" key={n as string}><span className="a" style={{ background: c as string }}>{a}</span><div><b>{n}</b><small>{m}</small></div>
-                <div style={{ textAlign: "right" }}><div className="r"><i /><i /><i className={r === 3 ? "" : "o"} /></div><small style={{ color: r === 3 ? "#1B8577" : undefined, marginTop: 4 }}>{r === 3 ? "All rounds cleared" : "Final round today"}</small></div></div>
-            ))}
-          </div>
-          <div className="fc hm" style={v({ "--rx": "52px", "--y": "430px", "--r": "3deg", "--d": ".95s", width: "230px" })}><div className="t"><span>Contract hire</span><i style={{ background: "var(--talent)" }} /></div><b>On Coalesca payroll</b><div className="row" style={{ marginTop: 6 }}><span>Payroll, PF, ESI handled</span></div></div>
+        <div className="wall" aria-label="Example screened profiles">
+          {[0, 1].map(r => (
+            <div className="mq" key={r}><div className={`row ${r ? "rev" : ""}`} style={v({ "--dur": r ? "52s" : "44s" })}>
+              {[...PROFILES.slice(r * 6, r * 6 + 6), ...PROFILES.slice(r * 6, r * 6 + 6)].map((c, k) => (
+                <div className="pc" key={k} aria-hidden={k >= 6}>
+                  <span className="a" style={{ background: c.c }}>{c.i}</span>
+                  <div><b>{c.r}</b><small>{c.m}</small></div>
+                  <div className="ft"><div className="sk">{c.s.map(s => <span key={s}>{s}</span>)}</div><span className="ok"><i><Tick /></i>3 of 3</span></div>
+                </div>
+              ))}
+            </div></div>
+          ))}
         </div>
-        <div className="hrow">
-          <div className="trust"><div className="av"><span style={{ background: "#22B5A2", width: 40, height: 40, fontSize: 12 }}>DV</span><span style={{ background: "#4B69FF", width: 40, height: 40, fontSize: 12 }}>QA</span><span style={{ background: "#0B1222", width: 40, height: 40, fontSize: 12 }}>SE</span></div><div><small>Developers, QA, security and more</small><b>An IT-only recruiting practice</b></div></div>
-          <div className="stats">
-            <div className="stat"><b>2–3</b><small>Screening rounds per hire</small><span className="tick"><Tick /></span></div>
-            <div className="stat a"><b>4 ways</b><small>to hire, one standard</small><span className="tick"><Tick /></span></div>
-          </div>
+        <div className="in tstats">
+          <div className="stat rv d1"><b>2–3</b><small>Screening rounds per candidate</small><span className="tick"><Tick /></span></div>
+          <div className="stat rv d2"><b>4</b><small>Ways to hire</small><span className="tick"><Tick /></span></div>
+          <div className="stat a rv d3"><b>IT only</b><small>A focused recruiting practice</small><span className="tick"><Tick /></span></div>
+          <div className="stat rv d4"><b>1–2 mo.</b><small>Veteran placement fee</small><span className="tick"><Tick /></span></div>
         </div>
       </section>
 
@@ -62,35 +76,35 @@ export default function Staffing() {
         <div className="in">
           <span className="chip lbl">Roles we fill</span>
           <div className="hd rv"><h2>Specialists for every layer of your tech team</h2><p>Our practice focuses <b>only on IT</b>, so the people screening your candidates <b>know the work.</b></p></div>
-          <div className="roles">
-            {ROLES.map((r, i) => (
-              <div className={`role rv d${(i % 4) + 1} ${r.f ? "f" : ""}`} key={r.t}><span className="ic">{r.ic}</span><h4>{r.t}</h4><p>{r.p}</p><div className="sk">{r.s.map(s => <span key={s}>{s}</span>)}</div></div>
-            ))}
-          </div>
+          <div className="rv"><RoleTabs roles={ROLES} /></div>
         </div>
       </section>
 
-      <section className="sec panel" id="how">
+      <section className="sec panel" id="how" style={{ paddingBottom: 0 }}>
         <div className="in">
           <span className="chip w lbl">How we screen</span>
-          <div className="hd rv"><h2>Only screened candidates reach your inbox</h2><p>Every profile clears <b>two to three rounds with us</b> before it&apos;s shared, so you spend time <b>interviewing the final few.</b></p></div>
-          <div className="split">
-            <div>
+          <div className="hd rv"><h2>Only screened candidates reach your inbox</h2><p>Every profile clears <b>two to three rounds with us</b> before it&apos;s shared. Scroll through the process.</p></div>
+        </div>
+        <div className="ss" data-scroll="sticky" data-steps="5">
+          <div className="pin">
+            <div className="steps5">
               {[
                 ["Role brief", "Skills, seniority, budget and joining date, agreed with you"],
                 ["Sourcing", "We search our database and network for matching profiles"],
                 ["Technical round", "A hands-on test of the skills the role actually uses"],
                 ["Fit and document checks", "Communication, expectations, notice period, documents"],
                 ["Your interview", "You meet the shortlist, pick your hire, we onboard them"],
-              ].map(([a, b], i) => <div className={`prob rv d${(i % 4) + 1} ${i === 2 ? "on" : ""}`} key={a}><span className="n">0{i + 1}</span><div className="tx">{a}<small>{b}</small></div></div>)}
+              ].map(([a, b], i) => <div className="prob" key={a}><span className="n">0{i + 1}</span><div className="tx">{a}<small>{b}</small></div></div>)}
             </div>
-            <div className="dkc rv d2"><span className="chip d" style={{ alignSelf: "flex-start" }}>From brief to shortlist</span><h3 style={{ marginTop: 22 }}>You only meet the final few</h3>
-              <div className="funnel rv">
+            <div className="dkc"><span className="chip d" style={{ alignSelf: "flex-start" }}>From brief to shortlist</span><h3 style={{ marginTop: 22 }}>You only meet the final few</h3>
+              <div className="funnel seen">
                 <div style={{ background: "#1A2532", width: "100%" }}><span>Profiles sourced</span><span style={{ color: "#8D96A1" }}>Database and network</span></div>
                 <div style={{ background: "#1E3A40", width: "84%" }}><span>Technical round</span><span style={{ color: "#9FD9CF" }}>Skills tested</span></div>
                 <div style={{ background: "#1C6B63", width: "66%" }}><span>Fit and checks</span><span style={{ color: "#C8F0E9" }}>Verified</span></div>
                 <div style={{ background: "var(--talent)", width: "48%", color: "var(--ink)", fontWeight: 500 }}><span>Your shortlist</span><Tick /></div>
-              </div></div>
+              </div>
+              <div className="pbar"><i /></div>
+            </div>
           </div>
         </div>
       </section>
@@ -116,7 +130,7 @@ export default function Staffing() {
 
       <section style={{ paddingBottom: 12 }} id="veterans">
         <div className="vet rv">
-          <div className="vl"><span className="chip d">Veteran placement</span><h2 style={{ marginTop: 26 }}>Hire from India&apos;s defence veterans</h2>
+          <div className="vl" style={{ position: "relative" }}><span className="chev" aria-hidden="true"><i /><i /><i /></span><span className="chip d">Veteran placement</span><h2 style={{ marginTop: 26 }}>Hire from India&apos;s defence veterans</h2>
             <p className="lead">Veterans leave service with discipline, process and responsibility under pressure. We place them in permanent roles where those strengths matter most.</p>
             <div className="vfits">{["IT operations", "Network operations centre", "Security operations", "Facility management", "Administration", "Logistics"].map(x => <span key={x}>{x}</span>)}</div>
             <Link href="/contact" className="pbtn l" style={{ marginTop: 36 }}>Hire a veteran<span className="ib"><Arrow /></span></Link></div>
@@ -139,7 +153,7 @@ export default function Staffing() {
               [<I.doc key="d" />, "Onboarding", "Offer letters and joining documents, ready before day one."],
               [<I.search key="e" />, "Background checks", "Education, employment and identity, verified."],
               [<I.refresh key="f" />, "Replacements", "If someone leaves, we start sourcing straight away."],
-            ].map(([ic, t, p], i) => <div className={`rv d${(i % 3) + 1}`} key={t as string}><span className="ic" style={{ color: "#1B7469" }}>{ic}</span><span><b>{t}</b><p>{p}</p></span></div>)}
+            ].map(([ic, t, p], i) => <div className={`rv d${(i % 3) + 1}`} key={t as string} data-tilt style={{ position: "relative" }}><span className="ic" style={{ color: "#1B7469" }}>{ic}</span><span><b>{t}</b><p>{p}</p></span></div>)}
           </div>
         </div>
       </section>

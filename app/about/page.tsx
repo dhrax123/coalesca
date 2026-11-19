@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Tick } from "@/components/Icons";
+import { LitText } from "@/components/Interactive";
 
 export const metadata: Metadata = {
   title: "About",
@@ -28,10 +29,8 @@ export default function About() {
         </div>
       </section>
 
-      <section className="sec white">
-        <div className="in">
-          <p className="statement rv"><span className="g">Coalesce:</span> to come together and form one whole. <span className="g">That&apos;s how we work. Specialist teams for talent, infrastructure and marketing, planning together whenever your project needs more than one.</span></p>
-        </div>
+      <section className="lit white">
+        <div className="pin"><div className="in"><span className="chip lbl">Our name</span><LitText text="Coalesce: to come together and form one whole. That's how we work. Specialist teams for talent, infrastructure and marketing, planning together whenever your project needs more than one." /></div></div>
       </section>
 
       <section className="sec panel">
@@ -39,7 +38,7 @@ export default function About() {
           <span className="chip w lbl">What we bring</span>
           <div className="hd rv"><h2>Four capabilities, one partner</h2><p>Use one service on its own, or combine them into a <b>single coordinated engagement.</b></p></div>
           <div className="pillars">
-            {PILLARS.map((p, i) => <div className={`pillar rv d${i + 1}`} key={p.t}><span className="dot" style={{ background: p.c }} /><h4>{p.t}</h4><p>{p.p}</p></div>)}
+            {PILLARS.map((p, i) => <div className={`pillar rv d${i + 1}`} key={p.t} data-tilt style={{ position: "relative" }}><span className="dot" style={{ background: p.c }} /><h4>{p.t}</h4><p>{p.p}</p></div>)}
           </div>
         </div>
       </section>
@@ -62,10 +61,10 @@ export default function About() {
         <div className="in">
           <span className="chip lbl">Who we work with</span>
           <div className="hd rv"><h2>Built for organisations at every stage</h2><p>From growing businesses to <b>global capability centres</b> and the <b>system integrators</b> that serve them.</p></div>
-          <div className="who rv">
-            {["Multinational corporations", "Global capability centres", "System integrators", "Small and mid-sized enterprises", "Startups", "Public and private sector"].map(w => <span key={w}><i />{w}</span>)}
-          </div>
         </div>
+          <div className="mq" style={{ marginTop: 40 }}><div className="row" style={{ ["--dur" as string]: "36s" }}>
+            {[0, 1].flatMap(k => ["Multinational corporations", "Global capability centres", "System integrators", "Small and mid-sized enterprises", "Startups", "Public and private sector"].map(w => <span className="whop" key={k + w} aria-hidden={k === 1}><i />{w}</span>))}
+          </div></div>
       </section>
 
       <section style={{ paddingBottom: 0 }}>
