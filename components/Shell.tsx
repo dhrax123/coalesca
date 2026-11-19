@@ -26,7 +26,17 @@ export default function Shell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
 
   const [intro, setIntro] = useState(true);
+  const [solid, setSolid] = useState(false);
   useEffect(() => { setOpen(false); }, [path]);
+  useEffect(() => {
+    const on = () => {
+      const hero = document.querySelector<HTMLElement>(".dhero");
+      const limit = hero ? hero.offsetHeight - 90 : 60;
+      setSolid(window.scrollY > Math.max(60, limit));
+    };
+    on(); window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, [path]);
   useEffect(() => { const t = setTimeout(() => setIntro(false), 2400); return () => clearTimeout(t); }, []);
 
   const isOn = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
@@ -35,9 +45,10 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     <div className={`page ${themeFor(path)} ${intro ? "boot" : ""}`}>
       <Motion />
       {intro && <div className="intro" aria-hidden="true"><img src="/brand/mark-white.svg" alt="" width={64} height={64} /><span>Coalesca</span></div>}
-      <header className="in nav">
+      <header className={`nav ${solid || open ? "solid" : "onhero"}`}><div className="in navin">
         <Link href="/" className="logo" aria-label="Coalesca Technologies home">
-          <img src="/brand/logo.svg" alt="Coalesca Technologies" width={216} height={40} />
+          <img className="lg-dark" src="/brand/logo.svg" alt="Coalesca Technologies" width={216} height={40} />
+          <img className="lg-white" src="/brand/logo-white.svg" alt="" aria-hidden="true" width={216} height={40} />
         </Link>
         <nav className="pillnav" aria-label="Main">
           {LINKS.map(l => <Link key={l.href} href={l.href} className={isOn(l.href) ? "on" : ""}>{l.label}</Link>)}
@@ -45,14 +56,14 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         <div className="navr">
           <Link href="/contact" className="navbtn">Talk to us</Link>
           <button className="burger" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(o => !o)}>
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d={open ? "M4 4l10 10M14 4L4 14" : "M2 5h14M2 9h14M2 13h14"} stroke="#0B1222" strokeWidth="1.8" strokeLinecap="round" /></svg>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d={open ? "M4 4l10 10M14 4L4 14" : "M2 5h14M2 9h14M2 13h14"} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
           </button>
         </div>
         <div className={`mnav ${open ? "open" : ""}`}>
           {LINKS.map(l => <Link key={l.href} href={l.href} className={isOn(l.href) ? "on" : ""}>{l.label}</Link>)}
           <Link href="/contact">Contact</Link>
         </div>
-      </header>
+      </div></header>
 
       <main>{children}</main>
 

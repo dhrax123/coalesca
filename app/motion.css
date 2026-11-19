@@ -523,3 +523,45 @@
 @media (max-width:1180px){
   .dbg:after{background:radial-gradient(140% 100% at 50% 30%, rgba(11,18,34,.45) 0%, rgba(11,18,34,.7) 100%), rgba(11,18,34,.35)!important}
 }
+
+/* ======================= Full-bleed hero: the hero IS the top of the site ======================= */
+body{padding:0}
+.page{border-radius:0;max-width:none}
+/* header floats over the hero, turns solid after it */
+.nav{position:fixed;left:0;right:0;top:0;height:auto;display:block;z-index:60;transition:background .4s,backdrop-filter .4s,box-shadow .4s}
+.navin{display:flex;align-items:center;justify-content:space-between;height:88px;transition:height .4s var(--ease)}
+.nav .logo{position:relative;display:block}
+.nav .logo img{height:40px;width:auto;transition:opacity .3s}
+.nav .logo .lg-white{position:absolute;left:0;top:0}
+.nav.onhero .lg-dark{opacity:0}.nav.solid .lg-white{opacity:0}
+.nav.onhero .pillnav{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)}
+.nav.onhero .pillnav a{color:rgba(255,255,255,.78)}
+.nav.onhero .pillnav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav.onhero .pillnav a.on{background:var(--acc);color:var(--ink)}
+.nav.onhero .navbtn{background:#fff;color:var(--ink)}
+.nav.onhero .burger{background:rgba(255,255,255,.12);color:#fff;backdrop-filter:blur(12px)}
+.nav.solid{background:rgba(245,245,246,.86);backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 1px 0 rgba(11,18,34,.06)}
+.nav.solid .navin{height:72px}
+.nav.solid .burger{color:var(--ink)}
+/* hero fills the screen edge to edge */
+.dhero,.nhero{margin:0!important;border-radius:0!important}
+section:has(> .dhero){padding-top:0!important}
+.dhero.lg{min-height:100svh}
+.dhero.md{min-height:78svh}
+.dhero .tx{padding-top:150px!important;padding-left:max(56px,calc((100vw - 1500px)/2 + 56px))!important}
+.dhero .dvis{margin-top:60px}
+.dbg{border-radius:0}
+.dhero .dbottom{padding-left:0;padding-right:0}
+@media (max-width:1180px){
+  .navin{height:76px}.nav.solid .navin{height:64px}
+  .dhero.lg,.dhero.md{min-height:0}
+  .dhero .tx{padding-top:110px!important;padding-left:56px!important}
+  .dhero .dvis{margin-top:10px}
+}
+@media (max-width:760px){
+  .nav .logo img{height:30px}
+  .navin{height:66px}.nav.solid .navin{height:58px}
+  .mnav{top:62px}
+  .dhero .tx{padding:92px 20px 6px!important}
+  .dhero .dvis{margin-top:4px}
+}
