@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DarkHero from "@/components/DarkHero";
 import { NE, I } from "@/components/Icons";
 import { ApplyForm } from "@/components/Forms";
 import { JOBS } from "@/lib/data";
@@ -12,16 +13,14 @@ export const metadata: Metadata = {
 export default function Careers() {
   return (
     <>
-      <section className="shero">
-        <div className="tx">
-          <span className="chip lbl">Careers</span>
-          <h1><span className="ln"><span>Your next</span></span><span className="ln"><span>role, <span className="g">at</span></span></span><span className="ln"><span><span className="g">leading</span> enterprises</span></span></h1>
-          <p className="sub">We place <b>engineers, support specialists and marketers</b> in contract and permanent roles across India. <b>Defence veterans are welcome.</b></p>
-        </div>
-        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/whiteglass.webp)" }} />
-          <div className="fc" style={{ "--r": "-3deg", "--d": ".7s", width: 250 } as React.CSSProperties}><div className="t"><span>Open roles</span><i style={{ background: "var(--talent)" }} /></div><b>{JOBS.length} roles this week</b><div className="row" style={{ marginTop: 6 }}><span>Bengaluru, Hyderabad, Pune, Chennai</span></div></div>
-        </div>
-      </section>
+      <DarkHero
+        size="md" img="whiteglass" pos="center"
+        chip="Careers"
+        title={<><span className="ln"><span>Your next</span></span><span className="ln"><span>role, <span className="g">at</span></span></span><span className="ln"><span><span className="g">leading</span> enterprises</span></span></>}
+        sub={<>We place <b>engineers, support specialists and marketers</b> in contract and permanent roles across India. <b>Defence veterans are welcome.</b></>}
+        cta={<a href="#apply" className="pbtn l">Apply now<span className="ib"><NE /></span></a>}
+        visual={<div className="fcard" style={{ left: "14%", bottom: "14%", ["--r" as string]: "-3deg", ["--d" as string]: ".8s" }}><small>Open roles</small><b>{JOBS.length} roles this week</b><div className="row"><span>Bengaluru, Hyderabad, Pune, Chennai</span></div></div>}
+      />
 
       <section className="sec white">
         <div className="in">

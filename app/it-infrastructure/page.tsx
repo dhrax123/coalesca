@@ -20,12 +20,12 @@ export default function Infra() {
   return (
     <>
       <section style={{ paddingTop: 12 }}>
-        <div className="nhero">
+        <div className="nhero dhero lg">
           <div className="tx">
-            <span className="chip d" style={{ alignSelf: "flex-start", marginBottom: 28 }}>IT infrastructure projects</span>
+            <span className="chip d hchip">IT infrastructure projects</span>
             <h1><span className="ln"><span>IT infrastructure,</span></span><span className="ln"><span><span className="g">delivered</span></span></span><span className="ln"><span><span className="g">on</span> site</span></span></h1>
             <p className="sub">On-site engineering for <b>system integrators</b> and <b>enterprises</b>, from the first site survey to <b>handover and support.</b></p>
-            <div className="cta"><Link href="/contact" className="pbtn l">Partner with us<span className="ib"><Arrow /></span></Link><a href="#phases" className="gbtn" style={{ background: "transparent", color: "#fff", borderColor: "#2A3646" }}>See how we deliver</a></div>
+            <div className="cta"><Link href="/contact" className="pbtn l">Partner with us<span className="ib"><Arrow /></span></Link><a href="#phases" className="gbtn ghost-d">How we deliver</a></div>
             <div className="ticks">
               <div className="tk"><b data-count="24">24</b><small>Sites in a sample rollout</small></div>
               <div className="tk"><b>Daily</b><small>Site reports</small></div>

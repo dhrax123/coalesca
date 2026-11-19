@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DarkHero from "@/components/DarkHero";
 import { NE } from "@/components/Icons";
 import { EnquiryForm } from "@/components/Forms";
 
@@ -24,16 +25,14 @@ export default async function Contact({ searchParams }: { searchParams: SP }) {
 
   return (
     <>
-      <section className="shero">
-        <div className="tx">
-          <span className="chip lbl">Contact</span>
-          <h1><span className="ln"><span>Tell us</span></span><span className="ln"><span>what <span className="g">you</span></span></span><span className="ln"><span><span className="g">need</span></span></span></h1>
-          <p className="sub">Share a few details and a specialist from the <b>right team</b> will get back to you.</p>
-        </div>
-        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/city.webp)" }} />
-          <div className="fc" style={{ "--r": "-3deg", "--d": ".7s", width: 250 } as React.CSSProperties}><div className="t"><span>Office</span><i style={{ background: "var(--brand)" }} /></div><b>Bengaluru, Karnataka</b><div className="row" style={{ marginTop: 6 }}><span>Serving clients across India</span></div></div>
-        </div>
-      </section>
+      <DarkHero
+        size="md" img="city" pos="center"
+        chip="Contact"
+        title={<><span className="ln"><span>Tell us</span></span><span className="ln"><span>what <span className="g">you</span></span></span><span className="ln"><span><span className="g">need</span></span></span></>}
+        sub={<>Share a few details and a specialist from the <b>right team</b> will get back to you.</>}
+        cta={null}
+        visual={<div className="fcard" style={{ left: "14%", bottom: "14%", ["--r" as string]: "-3deg", ["--d" as string]: ".8s" }}><small>Office</small><b>Bengaluru, Karnataka</b><div className="row"><span>Serving clients across India</span></div></div>}
+      />
 
       <section className="sec panel">
         <div className="in contact">

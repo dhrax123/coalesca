@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { v } from "@/components/v";
+import DarkHero from "@/components/DarkHero";
 import { Arrow, NE, Tick, Spark } from "@/components/Icons";
 import { RotWord, CursorList, DragReel } from "@/components/Interactive";
 
@@ -20,22 +22,22 @@ const WORDS = ["Performance ads", "Creative", "Social", "Influencers", "SEO", "L
 export default function Marketing() {
   return (
     <>
-      <section className="khero">
-        <div className="top"><span className="chip">Digital performance marketing</span><span style={{ fontSize: 14, color: "var(--mute)" }}>Google, Meta, LinkedIn, YouTube</span></div>
-        <h1><span className="ln"><span>Growth you</span></span><span className="ln"><span><span className="g">can</span> <RotWord words={["measure", "scale", "track", "prove"]} /></span></span></h1>
-        <div className="row2">
-          <div style={{ paddingBottom: 40 }}>
-            <p className="sub">Performance campaigns, ad creative and content that turn spend into <b>qualified leads</b>, reported every month in <b>plain numbers.</b></p>
-            <div className="cta"><Link href="/contact" className="pbtn">Plan a campaign<span className="ib"><Arrow /></span></Link><Link href="/contact" className="gbtn">Get a free audit</Link></div>
+      <DarkHero
+        img="tokyo" pos="60% 50%" cls="mk"
+        chip="Digital performance marketing"
+        title={<><span className="ln"><span>Growth you</span></span><span className="ln"><span><span className="g">can</span> <RotWord words={["measure", "scale", "track", "prove"]} /></span></span></>}
+        sub={<>Performance campaigns, ad creative and content that turn spend into <b>qualified leads</b>, reported every month in <b>plain numbers.</b></>}
+        cta={<><Link href="/contact" className="pbtn l">Plan a campaign<span className="ib"><Arrow /></span></Link><Link href="/contact" className="gbtn ghost-d">Free audit</Link></>}
+        ticks={[{ b: "4", s: "Ad platforms" }, { b: "5", s: "Step process" }, { b: "Monthly", s: "Reports" }]}
+        visual={<>
+          <div className="fcard dk" style={v({ left: "8%", top: "16%", "--r": "-4deg", "--d": ".8s" })}><small>Qualified leads, 30 days</small><span className="big-n" data-count="1284">1,284</span><em>+38% vs last month</em></div>
+          <div className="fcard wchart" style={v({ left: "30%", top: "50%", width: "300px", "--r": "2deg", "--d": ".95s" })}>
+            <div style={{ display: "flex", justifyContent: "space-between" }}><small>Leads per week, sample</small><small style={{ color: "var(--growth)" }}>● This month</small></div>
+            <svg className="draw" width="100%" height="80" viewBox="0 0 260 80" style={{ marginTop: 8 }}><path d="M0 70 C40 66 70 58 100 48 S170 30 200 22 S240 10 260 6 L260 80 L0 80Z" fill="#FFB23F" opacity=".15" /><path d="M0 74 C60 72 120 66 180 60 S240 54 260 52" stroke="#D5D8DD" strokeWidth="2" fill="none" /><path className="ln" d="M0 70 C40 66 70 58 100 48 S170 30 200 22 S240 10 260 6" stroke="#FFB23F" strokeWidth="3" fill="none" /></svg>
           </div>
-          <div className="kdash" aria-label="Illustrative campaign report">
-            <div className="k"><small>Qualified leads</small><b data-count="1284">1,284</b><em>+38% vs last month</em></div>
-            <div className="k"><small>Cost per lead</small><b data-count="412" data-pre="₹">₹412</b><em>−21% vs last month</em></div>
-            <div className="k"><small>Leads per week, sample</small>
-              <svg width="100%" height="90" viewBox="0 0 300 90" preserveAspectRatio="none" style={{ marginTop: 8 }}><path d="M0 80 C50 76 90 66 130 54 S210 30 250 20 S285 10 300 6 L300 90 L0 90Z" fill="#FFB23F" opacity=".14" /><path d="M0 84 C80 80 160 74 220 68 S280 62 300 60" stroke="#3A4656" strokeWidth="2" fill="none" /><path className="ln" d="M0 80 C50 76 90 66 130 54 S210 30 250 20 S285 10 300 6" stroke="#FFB23F" strokeWidth="3" fill="none" /></svg></div>
-          </div>
-        </div>
-      </section>
+          <div className="fcard hs" style={v({ right: "6%", top: "12%", width: "190px", "--r": "3deg", "--d": "1.1s" })}><small>Cost per lead</small><span className="big-n">₹412</span><em>−21% this month</em></div>
+        </>}
+      />
 
       <div className="ticker" aria-hidden="true">
         {[0, 1].map(k => <div className="track" key={k}>{WORDS.map(w => <span key={w} style={{ display: "contents" }}><span>{w}</span><Spark /></span>)}</div>)}

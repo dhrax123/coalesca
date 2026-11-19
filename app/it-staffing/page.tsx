@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DarkHero from "@/components/DarkHero";
 import { Arrow, Tick, I } from "@/components/Icons";
 import { v } from "@/components/v";
 import { RoleTabs } from "@/components/Interactive";
@@ -46,31 +47,34 @@ const FAQ = [
 export default function Staffing() {
   return (
     <>
-      <section className="thero">
-        <span className="chip">IT staffing and recruitment</span>
-        <h1><span className="ln"><span>Screened IT talent,</span></span><span className="ln"><span><span className="g">ready for</span> your site</span></span></h1>
-        <p className="sub">Developers, engineers and IT specialists who&apos;ve <b>cleared our technical and fit rounds</b> before you see a profile. Hire on <b>contract</b> or <b>permanently</b>.</p>
-        <div className="cta"><Link href="/contact" className="pbtn">Hire talent<span className="ib"><Arrow /></span></Link><a href="#how" className="gbtn">How we screen</a></div>
-        <div className="wall" aria-label="Example screened profiles">
-          {[0, 1].map(r => (
-            <div className="mq" key={r}><div className={`row ${r ? "rev" : ""}`} style={v({ "--dur": r ? "52s" : "44s" })}>
-              {[...PROFILES.slice(r * 6, r * 6 + 6), ...PROFILES.slice(r * 6, r * 6 + 6)].map((c, k) => (
-                <div className="pc" key={k} aria-hidden={k >= 6}>
-                  <span className="a" style={{ background: c.c }}>{c.i}</span>
-                  <div><b>{c.r}</b><small>{c.m}</small></div>
-                  <div className="ft"><div className="sk">{c.s.map(s => <span key={s}>{s}</span>)}</div><span className="ok"><i><Tick /></i>3 of 3</span></div>
-                </div>
-              ))}
-            </div></div>
-          ))}
-        </div>
-        <div className="in tstats">
-          <div className="stat rv d1"><b>2–3</b><small>Screening rounds per candidate</small><span className="tick"><Tick /></span></div>
-          <div className="stat rv d2"><b>4</b><small>Ways to hire</small><span className="tick"><Tick /></span></div>
-          <div className="stat a rv d3"><b>IT only</b><small>A focused recruiting practice</small><span className="tick"><Tick /></span></div>
-          <div className="stat rv d4"><b>1–2 mo.</b><small>Veteran placement fee</small><span className="tick"><Tick /></span></div>
-        </div>
-      </section>
+      <DarkHero
+        img="code" pos="70% 50%"
+        chip="IT staffing and recruitment"
+        title={<><span className="ln"><span>Screened IT</span></span><span className="ln"><span>talent, <span className="g">ready</span></span></span><span className="ln"><span><span className="g">for</span> your site</span></span></>}
+        sub={<>Developers, engineers and IT specialists who&apos;ve <b>cleared our technical and fit rounds</b> before you see a profile. Hire on <b>contract</b> or <b>permanently</b>.</>}
+        cta={<><Link href="/contact" className="pbtn l">Hire talent<span className="ib"><Arrow /></span></Link><a href="#how" className="gbtn ghost-d">How we screen</a></>}
+        ticks={[{ b: "2–3", s: "Screening rounds" }, { b: "4", s: "Ways to hire" }, { b: "IT only", s: "Focused practice" }]}
+        visual={
+          <div className="fcard sl" style={v({ right: "8%", top: "14%", "--r": "-2deg", "--d": ".8s" })}>
+            <div className="h"><div><small>Your shortlist</small><b>Senior DevOps engineer</b></div><span className="chip" style={{ background: "#EAF8F5", color: "#1B8577" }}>3 profiles</span></div>
+            {PROFILES.slice(0, 3).map((c, k) => (
+              <div className="cd" key={c.i}><span className="a" style={{ background: c.c }}>{c.i}</span><div><b>{c.r}</b><small>{c.m}</small></div>
+                <div style={{ textAlign: "right" }}><div className="r"><i /><i /><i className={k < 2 ? "" : "o"} /></div><small style={{ color: k < 2 ? "#1B8577" : undefined, marginTop: 4 }}>{k < 2 ? "All rounds cleared" : "Final round today"}</small></div></div>
+            ))}
+          </div>
+        }
+        bottom={
+          <div className="mq" aria-label="Example screened profiles"><div className="row" style={v({ "--dur": "48s" })}>
+            {[...PROFILES, ...PROFILES].map((c, k) => (
+              <div className="pc" key={k} aria-hidden={k >= PROFILES.length}>
+                <span className="a" style={{ background: c.c }}>{c.i}</span>
+                <div><b>{c.r}</b><small>{c.m}</small></div>
+                <div className="ft"><div className="sk">{c.s.map(s => <span key={s}>{s}</span>)}</div><span className="ok"><i><Tick /></i>3 of 3</span></div>
+              </div>
+            ))}
+          </div></div>
+        }
+      />
 
       <section className="sec white">
         <div className="in">

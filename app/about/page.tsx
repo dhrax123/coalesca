@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import DarkHero from "@/components/DarkHero";
 import { Arrow, Tick } from "@/components/Icons";
 import { LitText } from "@/components/Interactive";
 
@@ -18,16 +19,14 @@ const PILLARS = [
 export default function About() {
   return (
     <>
-      <section className="shero">
-        <div className="tx">
-          <span className="chip lbl">About Coalesca</span>
-          <h1><span className="ln"><span>People,</span></span><span className="ln"><span>technology <span className="g">and</span></span></span><span className="ln"><span><span className="g">growth,</span> together</span></span></h1>
-          <p className="sub">Coalesca Technologies is a multi-vertical company built to give enterprises <b>skilled talent</b>, <b>dependable infrastructure</b> and <b>measurable growth</b> through one partner.</p>
-        </div>
-        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/stepped.webp)" }} />
-          <div className="fc" style={{ "--r": "-3deg", "--d": ".7s", width: 260 } as React.CSSProperties}><div className="t"><span>Coalesca Technologies</span><i style={{ background: "var(--brand)" }} /></div><b>Three services, one contract</b><div className="row" style={{ marginTop: 6 }}><span>Staffing, infrastructure, marketing</span></div></div>
-        </div>
-      </section>
+      <DarkHero
+        size="md" img="stepped" pos="center"
+        chip="About Coalesca"
+        title={<><span className="ln"><span>People,</span></span><span className="ln"><span>technology <span className="g">and</span></span></span><span className="ln"><span><span className="g">growth,</span> together</span></span></>}
+        sub={<>Coalesca Technologies is a multi-vertical company built to give enterprises <b>skilled talent</b>, <b>dependable infrastructure</b> and <b>measurable growth</b> through one partner.</>}
+        cta={<Link href="/contact" className="pbtn l">Talk to us<span className="ib"><Arrow /></span></Link>}
+        visual={<div className="fcard" style={{ left: "14%", bottom: "14%", ["--r" as string]: "-3deg", ["--d" as string]: ".8s" }}><small>Coalesca Technologies</small><b>Three services, one contract</b><div className="row"><span>Staffing, infrastructure, marketing</span></div></div>}
+      />
 
       <section className="lit white">
         <div className="pin"><div className="in"><span className="chip lbl">Our name</span><LitText text="Coalesce: to come together and form one whole. That's how we work. Specialist teams for talent, infrastructure and marketing, planning together whenever your project needs more than one." /></div></div>
