@@ -565,3 +565,20 @@ section:has(> .dhero){padding-top:0!important}
   .dhero .tx{padding:92px 20px 6px!important}
   .dhero .dvis{margin-top:4px}
 }
+
+/* ======================= Full-bleed for every dark block ======================= */
+.cv,.vet,.board,.band,.final,.ticker,.foot{margin:0!important;border-radius:0!important}
+section:has(> .vet),section:has(> .board),section:has(> .band),section:has(> .final){padding:0!important}
+.cv .pin{top:0!important;height:100svh!important;border-radius:0!important}
+.vet .vl,.board,.band,.final{padding-left:max(56px,calc((100vw - 1500px)/2 + 56px));padding-right:max(56px,calc((100vw - 1500px)/2 + 56px))}
+.vet .vr{border-radius:0}
+.foot{padding-left:max(56px,calc((100vw - 1500px)/2 + 56px));padding-right:max(56px,calc((100vw - 1500px)/2 + 56px))}
+.ticker{height:104px}
+@media (max-width:1180px){
+  .cv{margin:0!important}
+  .vet .vl,.board,.band,.final,.foot{padding-left:40px;padding-right:40px}
+}
+@media (max-width:760px){
+  .vet .vl,.board,.band,.final,.foot{padding-left:20px;padding-right:20px}
+  .ticker{height:68px}
+}
