@@ -3,6 +3,14 @@ import { Arrow, NE, Tick, I } from "@/components/Icons";
 import { EnquiryForm } from "@/components/Forms";
 import { v } from "@/components/v";
 import { JOBS } from "@/lib/data";
+import { ServicePanels } from "@/components/Interactive";
+
+const PANELS = [
+  { href: "/it-staffing", img: "desk", c: "var(--talent)", n: "01", chips: ["Contract", "Permanent", "Veterans"], t: "IT staffing", s: "Screened IT professionals on contract or in permanent roles, deployed at your site." },
+  { href: "/it-infrastructure", img: "earth", c: "var(--systems)", n: "02", chips: ["Networks", "Data centre", "Rollouts"], t: "IT infrastructure", s: "On-site engineering for system integrators and enterprises, from survey to handover." },
+  { href: "/digital-marketing", img: "tokyo", c: "var(--growth)", n: "03", chips: ["Performance ads", "Creative", "SEO"], t: "Digital marketing", s: "Performance campaigns and the creative that powers them, measured in leads." },
+  { href: "/contact", img: "code", c: "var(--brand)", n: "04", chips: ["Apps", "SaaS", "AI automation"], t: "Software and AI", s: "Apps, websites, SaaS tools and AI automation when your project needs them." },
+];
 
 export default function Home() {
   return (
@@ -12,7 +20,7 @@ export default function Home() {
         <p className="sub">From your next <b>screened IT hire</b> to <b>infrastructure rollouts</b> and <b>performance campaigns</b>, delivered by one partner.</p>
         <div className="cta"><Link href="/contact" className="pbtn">Talk to us<span className="ib"><Arrow /></span></Link><a href="#services" className="gbtn">Explore services</a></div>
         <div className="stage">
-          <div className="capsule" style={{ backgroundImage: "url(/img/towers.jpg)", backgroundSize: "120%" }} data-speed="-0.06" />
+          <div className="capsule" style={{ backgroundImage: "url(/img/towers.webp)", backgroundSize: "120%" }} data-speed="-0.06" />
           <div className="fc" style={v({ "--rx": "432px", "--y": "300px", "--r": "-4deg", "--d": ".7s", "--mx": "4%", "--my": "40px" })}>
             <div className="t"><span>IT staffing</span><i style={{ background: "var(--talent)" }} /></div>
             <b>Shortlist ready</b>
@@ -30,7 +38,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hrow">
-          <div className="trust"><div className="ph"><span style={{ backgroundImage: "url(/img/desk.jpg)" }} /><span style={{ backgroundImage: "url(/img/earth.jpg)" }} /><span style={{ backgroundImage: "url(/img/tokyo.jpg)" }} /></div><div><small>Staffing, infrastructure, marketing</small><b>Three services, one partner</b></div></div>
+          <div className="trust"><div className="ph"><span style={{ backgroundImage: "url(/img/desk.webp)" }} /><span style={{ backgroundImage: "url(/img/earth.webp)" }} /><span style={{ backgroundImage: "url(/img/tokyo.webp)" }} /></div><div><small>Staffing, infrastructure, marketing</small><b>Three services, one partner</b></div></div>
           <div className="stats">
             <div className="stat"><b>2–3</b><small>Screening rounds per hire</small><span className="tick"><Tick /></span></div>
             <div className="stat a"><b>1</b><small>Account manager for all</small><span className="tick"><Tick /></span></div>
@@ -67,21 +75,7 @@ export default function Home() {
         <div className="in">
           <span className="chip lbl">What we do</span>
           <div className="hd rv"><h2>Built for every part of your business</h2><p>Whether you&apos;re <b>scaling a tech team</b>, <b>rolling out infrastructure</b> or <b>chasing pipeline</b>, each service has its own specialists.</p></div>
-          <div className="xpanels rv">
-            {[
-              { href: "/it-staffing", img: "desk", c: "var(--talent)", n: "01", chips: ["Contract", "Permanent", "Veterans"], t: "IT staffing", s: "Screened IT professionals on contract or in permanent roles, deployed at your site." },
-              { href: "/it-infrastructure", img: "earth", c: "var(--systems)", n: "02", chips: ["Networks", "Data centre", "Rollouts"], t: "IT infrastructure", s: "On-site engineering for system integrators and enterprises, from survey to handover." },
-              { href: "/digital-marketing", img: "tokyo", c: "var(--growth)", n: "03", chips: ["Performance ads", "Creative", "SEO"], t: "Digital marketing", s: "Performance campaigns and the creative that powers them, measured in leads." },
-              { href: "/contact", img: "code", c: "var(--brand)", n: "04", chips: ["Apps", "SaaS", "AI automation"], t: "Software and AI", s: "Apps, websites, SaaS tools and AI automation when your project needs them." },
-            ].map((c, i) => (
-              <Link href={c.href} className={`xp ${i === 0 ? "on" : ""}`} key={c.t} data-cursor="Explore">
-                <span className="bg" style={{ backgroundImage: `url(/img/${c.img}.jpg)` }} />
-                <span className="top"><span className="num" style={{ background: c.c }}>{c.n}</span><span className="ib"><NE /></span></span>
-                <span className="vt">{c.t}</span>
-                <span className="body"><b>{c.t}</b><span className="s">{c.s}</span><span className="chips">{c.chips.map(x => <span className="ochip" key={x}>{x}</span>)}</span></span>
-              </Link>
-            ))}
-          </div>
+          <ServicePanels items={PANELS} />
         </div>
       </section>
 
@@ -100,7 +94,7 @@ export default function Home() {
                 <div className={`prob rv d${i + 1} ${i === 1 ? "on" : ""}`} key={a}><span className="n">0{i + 1}</span><div className="tx">{a}<small>{b}</small></div></div>
               ))}
             </div>
-            <div className="big imr" style={{ backgroundImage: "url(/img/glass.jpg)" }}><h3>One partner across talent, systems and growth</h3><div className="stat"><b>1 contract</b><small>One invoice, every service</small><span className="tick"><Tick /></span></div></div>
+            <div className="big imr" style={{ backgroundImage: "url(/img/glass.webp)" }}><h3>One partner across talent, systems and growth</h3><div className="stat"><b>1 contract</b><small>One invoice, every service</small><span className="tick"><Tick /></span></div></div>
           </div>
         </div>
       </section>
@@ -111,7 +105,7 @@ export default function Home() {
             <p className="lead">Years of discipline, process and responsibility under pressure. We match veterans to permanent roles in IT operations, security, facilities and administration.</p>
             <div className="vlist"><div><b>Screened and matched</b>Sourcing, screening and interviews handled by us</div><div><b>Joins your payroll</b>Permanent roles, hired directly by you</div></div>
             <Link href="/it-staffing#veterans" className="pbtn l" style={{ marginTop: 36 }}>Hire a veteran<span className="ib"><Arrow /></span></Link></div>
-          <div className="vr" style={{ backgroundImage: "url(/img/dark.jpg)" }}>
+          <div className="vr" style={{ backgroundImage: "url(/img/dark.webp)" }}>
             <div className="stat a"><b>1–2 months</b><small>of the role&apos;s salary, one-time fee</small><span className="tick"><Tick /></span></div>
             <div className="stat"><b>Permanent</b><small>roles on your payroll</small><span className="tick"><Tick /></span></div>
           </div>
@@ -140,7 +134,7 @@ export default function Home() {
           <span className="chip lbl">Careers</span>
           <div className="hd rv" style={{ marginBottom: 56 }}><h2>Build your career with leading enterprises</h2><p>We place <b>engineers, support specialists and marketers</b> in roles across India. Send your resume and we&apos;ll match you.</p></div>
           <div className="careers">
-            <div className="cphoto imr" style={{ backgroundImage: "url(/img/whiteglass.jpg)" }}><h3>Open roles, updated every week</h3><Link href="/careers" className="pbtn l" style={{ marginTop: 26 }}>See all roles<span className="ib"><Arrow /></span></Link></div>
+            <div className="cphoto imr" style={{ backgroundImage: "url(/img/whiteglass.webp)" }}><h3>Open roles, updated every week</h3><Link href="/careers" className="pbtn l" style={{ marginTop: 26 }}>See all roles<span className="ib"><Arrow /></span></Link></div>
             <div className="jobs rv d2">
               {JOBS.map(j => (
                 <Link href="/careers#apply" className="job" key={j.t}><div><b>{j.t}</b><small>{j.m}</small></div><div className="tags"><span className="chip">{j.v}</span><span className="ib soft"><NE /></span></div></Link>

@@ -206,9 +206,10 @@
 .boot .khero h1 .ln>span{animation-delay:1.05s}.boot .khero h1 .ln:nth-child(2)>span{animation-delay:1.15s}
 .khero .g{color:#B6BBC2}
 .rot{display:inline-grid;vertical-align:top;overflow:hidden;height:.92em}
-.rot>span{grid-area:1/1;transform:translateY(105%);color:var(--growth)}
-.rot>span.on,.rot>span.out{transition:transform .9s var(--ease)}
-.rot>span.on{transform:none}.rot>span.out{transform:translateY(-105%)}
+.rot>span{grid-area:1/1;transform:translateY(70%) rotateX(-60deg);opacity:0;filter:blur(8px);color:var(--growth);transform-origin:50% 100%}
+.rot{perspective:900px}
+.rot>span.on,.rot>span.out{transition:transform .9s var(--ease),opacity .5s,filter .6s}
+.rot>span.on{transform:none;opacity:1;filter:none;transition-delay:.15s}.rot>span.out{transform:translateY(-60%) rotateX(60deg);opacity:0;filter:blur(8px);transform-origin:50% 0}
 .khero .row2{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:end;padding:0 56px;margin-top:40px}
 .khero .sub{font-size:16px;color:var(--mute);max-width:420px;animation:fade .9s .35s var(--ease) both}.khero .sub b{color:var(--ink);font-weight:500}
 .khero .cta{display:flex;gap:10px;margin-top:26px;animation:fade .9s .45s var(--ease) both}
@@ -306,3 +307,128 @@
   .khero .top>span:last-child{display:none}
   .net{min-height:380px}
 }
+
+/* ============ Desktop panels: JS drives .on ============ */
+.xpanels .xp.on{flex:3.2}
+.xpanels .xp.on .body{opacity:1;transform:none;transition-delay:.25s}
+.xpanels .xp.on .vt{opacity:0}
+.xp .mt{display:none}
+
+/* ============ Tablet & phone: folding accordion, sticky convergence ============ */
+@media (max-width:1180px){
+  .xpanels{flex-direction:column;height:auto;gap:8px;perspective:1200px}
+  .xpanels .xp{height:80px;flex:none!important;transition:height .8s var(--ease),transform .6s var(--ease);transform-origin:top}
+  .xpanels .xp.on{height:360px}
+  .xp .top{top:25px;left:16px;right:16px;gap:12px}
+  .xp .mt{display:block;flex:1;font-size:18px;font-weight:500;letter-spacing:-.01em;transition:opacity .3s}
+  .xp.on .mt{opacity:0}
+  .xp .ib{width:34px;height:34px}
+  .xp:not(.on) .ib{transform:rotate(90deg)}
+  .xp:not(.on):after{background:linear-gradient(90deg,rgba(11,18,34,.85),rgba(11,18,34,.55))}
+  .xpanels .xp:not(.on) .body{opacity:0;transform:rotateX(-75deg) translateY(30px);transition-delay:0s}
+  .xp .body{transform-origin:top center;transition:opacity .5s var(--ease),transform .9s var(--ease)}
+  .xp.on .body{transition-delay:.2s}
+  .xp .vt{display:none}
+
+  .cv{height:230vh;margin:12px}
+  .cv .pin{position:sticky;top:12px;height:calc(100svh - 24px);grid-template-columns:1fr;grid-template-rows:auto 1fr;--q:clamp(0, calc((var(--p,0) - .08) / .62), 1)}
+  .cvtext{padding:36px 28px 0}
+  .cvs{height:110px;margin-top:18px}.cvs h2{position:absolute;font-size:clamp(30px,6vw,44px);margin:0;opacity:0;transform:translateY(30px)}
+  .cv .s0,.cv .s1{display:block}
+  .cvtext p{font-size:14px;margin-top:8px}
+  .cvbar{display:block;margin-top:18px}
+  .cvstage{height:auto}
+}
+
+/* ============ Phones: compact, swipe rails, less scrolling ============ */
+@media (max-width:760px){
+  .sec{padding:56px 0}
+  .lbl{margin-bottom:16px}
+  .hd{gap:12px}
+  .hd h2,.svc h2{font-size:clamp(28px,8vw,34px)}
+  .hd p{font-size:14px}
+  .stage{height:400px;margin-top:28px}
+  .capsule{height:240px}
+  .hero{padding:28px 0 24px}
+
+  .cv{height:220vh}
+  .cvc{width:170px;padding:14px 16px}.cvc b{font-size:15px;margin-top:10px}
+  .cvc.c1{--sx:-70px;--sy:-110px}.cvc.c2{--sx:70px;--sy:-30px}.cvc.c3{--sx:-40px;--sy:100px}
+  .cvcore{width:110px;height:110px;border-radius:32px}.cvcore img{width:64px;height:64px}
+
+  /* generic swipe rail */
+  .models,.mg,.pillars,.values,.perks,.split>div:first-child,.ss .steps5,.pline .st5,.tstats,.k4{
+    display:flex!important;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;scrollbar-width:none;
+    margin-left:-20px;margin-right:-20px;padding:4px 20px 8px;scroll-padding:0 20px;-webkit-overflow-scrolling:touch}
+  .models::-webkit-scrollbar,.mg::-webkit-scrollbar,.pillars::-webkit-scrollbar,.values::-webkit-scrollbar,.perks::-webkit-scrollbar,.split>div:first-child::-webkit-scrollbar,.ss .steps5::-webkit-scrollbar,.pline .st5::-webkit-scrollbar,.tstats::-webkit-scrollbar,.k4::-webkit-scrollbar{display:none}
+  .models>*,.mg>*,.pillars>*,.values>*,.perks>*,.split>div:first-child>*,.ss .steps5>*,.pline .st5>*{flex:0 0 78%;scroll-snap-align:start;margin:0!important}
+  .tstats>*,.k4>*{flex:0 0 46%;scroll-snap-align:start}
+  .models{margin-top:28px}.mg{margin-top:28px}.pillars{margin-top:28px}.values{margin-top:28px}.perks{margin-top:28px}
+  .model{min-height:250px;padding:22px}
+  .pillar{min-height:200px}
+  .mg>div{padding:20px}
+
+  /* rail cards fold in as they enter from the right */
+  @supports (animation-timeline: view()){
+    .models>*,.mg>*,.pillars>*,.values>*,.perks>*,.split>div:first-child>*,.ss .steps5>*,.pline .st5>*{
+      animation:railin linear both;animation-timeline:view(inline);animation-range:entry 0% cover 40%}
+    @keyframes railin{from{opacity:.35;transform:perspective(800px) rotateY(-28deg) scale(.92)}to{opacity:1;transform:none}}
+  }
+
+  /* Why Coalesca: swipe deck */
+  .split{margin-top:28px;gap:12px}
+  .split>div:first-child .prob{height:150px;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:20px}
+  .split>div:first-child .prob .tx{width:100%;font-size:16px}
+  .split>div:first-child .prob .n{left:auto;right:16px;bottom:-18px;font-size:92px}
+  .big{min-height:300px}
+  .swipehint{display:flex}
+
+  /* staffing */
+  .thero{padding:36px 0 20px}.thero .sub{font-size:14.5px;padding:0 20px}
+  .wall{margin-top:36px;gap:10px}.pc{width:240px;padding:14px;grid-template-columns:40px 1fr}.pc .a{width:40px;height:40px;border-radius:12px}
+  .tstats{margin-top:24px}
+  .tstats .stat b{font-size:30px}
+  .rtabs{margin-top:28px}.rpanel{min-height:340px;padding:24px}.rpanel h3{font-size:34px}.rpanel .ic{width:52px;height:52px}
+  .ss .pin{padding:24px 20px 0}
+  .ss .steps5 .prob{height:150px;opacity:1!important;transform:none!important;flex-direction:column;align-items:flex-start;padding:20px}
+  .ss .steps5 .prob .n{left:auto;right:14px;bottom:-16px;font-size:88px;color:#ECEDEF!important}
+  .ss .steps5 .prob .tx{width:100%}
+  .ss .dkc{min-height:0;margin-top:12px}.dkc h3{font-size:30px}.ss .dkc .count{font-size:80px}
+  .cmp th,.cmp td{padding:14px 16px;font-size:13.5px}
+
+  /* infra */
+  .nhero{min-height:0}.nhero .tx{padding:36px 22px 20px}
+  .nhero .ticks .tk{min-width:0;flex:1;padding:12px 14px}.nhero .ticks b{font-size:22px}
+  .net{min-height:320px}
+  .bento{margin-top:28px;gap:10px}.bt{min-height:180px;padding:20px}.bt.big1{min-height:280px}.bt h4{font-size:22px}
+  .chain{margin-top:28px}.node{min-height:0;padding:22px}.node h4{padding-top:22px;font-size:22px}
+  .hsc .pin{padding:56px 0}.hsc .track{margin-top:24px;gap:10px;scroll-snap-type:x mandatory}.ph5{width:270px;height:320px;padding:22px;scroll-snap-align:start}.ph5 .n{font-size:90px}.ph5 h3{font-size:26px}
+  .board{padding:36px 20px}.k4{margin-top:24px}.k4 b{font-size:26px}
+
+  /* marketing */
+  .khero{padding-top:28px}.khero h1{margin-top:24px}
+  .khero .row2{margin-top:16px;gap:0}
+  .kdash{grid-template-columns:1fr 1fr;padding:14px;gap:8px;border-radius:22px}.kdash .k{padding:14px}.kdash .k b{font-size:24px}.kdash>div:last-child{grid-column:1/-1}
+  .ticker{height:64px;margin-top:12px}.ticker span{font-size:26px}
+  .clist{margin-top:24px}.crow{padding:20px 0;gap:10px}.crow h3{font-size:26px}.crow p{font-size:13.5px}
+  .reel{margin-top:28px}.reel>*{height:340px}.reel .ad{width:220px}.reel .ad.sq,.reel .ad.wd{width:300px}.reel .serp{width:300px}
+  .pline{margin-top:28px}.pline .s{background:#fff;border-radius:20px;padding:20px}
+  .final{padding:44px 22px 32px}
+
+  /* about + careers */
+  .lit .pin{padding:56px 0}.statement{font-size:26px}
+  .shero{padding:24px 0 36px;gap:28px}
+
+  /* footer: compact */
+  .foot{padding:40px 22px 24px;margin:10px}
+  .foot .top{grid-template-columns:1fr 1fr 1fr;gap:24px 12px}
+  .foot .top>div:first-child{grid-column:1/-1}
+  .foot li{font-size:13.5px;line-height:2}
+  .foot .word{margin-top:40px}
+}
+@media (max-width:380px){
+  .hero h1,.thero h1{font-size:36px}
+  .xpanels .xp.on{height:340px}
+  .cvs h2{font-size:28px}
+}
+@media (max-width:760px){.big h3{top:26px;bottom:auto;font-size:28px}}

@@ -18,7 +18,7 @@ export default function Careers() {
           <h1><span className="ln"><span>Your next</span></span><span className="ln"><span>role, <span className="g">at</span></span></span><span className="ln"><span><span className="g">leading</span> enterprises</span></span></h1>
           <p className="sub">We place <b>engineers, support specialists and marketers</b> in contract and permanent roles across India. <b>Defence veterans are welcome.</b></p>
         </div>
-        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/whiteglass.jpg)" }} />
+        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/whiteglass.webp)" }} />
           <div className="fc" style={{ "--r": "-3deg", "--d": ".7s", width: 250 } as React.CSSProperties}><div className="t"><span>Open roles</span><i style={{ background: "var(--talent)" }} /></div><b>{JOBS.length} roles this week</b><div className="row" style={{ marginTop: 6 }}><span>Bengaluru, Hyderabad, Pune, Chennai</span></div></div>
         </div>
       </section>

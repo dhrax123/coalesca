@@ -53,15 +53,15 @@ export default function Infra() {
           <span className="chip lbl">Capabilities</span>
           <div className="hd rv"><h2>Built for every layer of your infrastructure</h2><p>From <b>cabling and Wi-Fi</b> to <b>servers, devices and support</b>, our engineers handle the physical work your project depends on.</p></div>
           <div className="bento">
-            <div className="bt ph big1 imr" style={{ backgroundImage: "url(/img/city.jpg)" }} data-cursor="Scope it"><span className="chips" style={{ marginBottom: "auto", marginTop: 0 }}><span className="ochip">LAN</span><span className="ochip">WAN</span><span className="ochip">Wi-Fi</span><span className="ochip">Structured cabling</span></span><h4 style={{ fontSize: 40, fontWeight: 400 }}>Network and connectivity</h4><p>Design, install and test networks for stores, offices and campuses, with every port documented.</p></div>
+            <div className="bt ph big1 imr" style={{ backgroundImage: "url(/img/city.webp)" }} data-cursor="Scope it"><span className="chips" style={{ marginBottom: "auto", marginTop: 0 }}><span className="ochip">LAN</span><span className="ochip">WAN</span><span className="ochip">Wi-Fi</span><span className="ochip">Structured cabling</span></span><h4 style={{ fontSize: 40, fontWeight: 400 }}>Network and connectivity</h4><p>Design, install and test networks for stores, offices and campuses, with every port documented.</p></div>
             <div className="bt rv d1" data-tilt><span className="ic"><I.servers /></span><h4>Server and data centre</h4><p>Racks, servers and storage, installed and migrated.</p></div>
             <div className="bt blue rv d2" data-tilt><span className="bars" aria-hidden="true">{[.5, .8, .6, 1, .7, .9].map((h, k) => <i key={k} style={{ height: `${h * 100}%`, animationDelay: `${k * 0.2}s` }} />)}</span><h4>Cloud and hybrid</h4><p>Move workloads safely between on-site and cloud.</p></div>
-            <div className="bt ph wide rv d3" style={{ backgroundImage: "url(/img/desk.jpg)" }}><h4>Device rollouts</h4><p>Laptops, POS terminals and imaging, deployed to every desk and every store.</p></div>
+            <div className="bt ph wide rv d3" style={{ backgroundImage: "url(/img/desk.webp)" }}><h4>Device rollouts</h4><p>Laptops, POS terminals and imaging, deployed to every desk and every store.</p></div>
           </div>
           <div className="bento" style={{ gridTemplateRows: "200px", marginTop: 14 }}>
             <div className="bt rv d1" data-tilt><span className="ic"><I.refresh /></span><h4>Support and AMC</h4></div>
             <div className="bt rv d2" data-tilt><span className="ic"><I.shield /></span><h4>Surveys and audits</h4></div>
-            <div className="bt ph wide rv d3" style={{ backgroundImage: "url(/img/keys.jpg)" }}><h4>Helpdesk and on-call</h4><p>Help after go-live, when your teams need it.</p></div>
+            <div className="bt ph wide rv d3" style={{ backgroundImage: "url(/img/keys.webp)" }}><h4>Helpdesk and on-call</h4><p>Help after go-live, when your teams need it.</p></div>
           </div>
         </div>
       </section>
@@ -85,10 +85,10 @@ export default function Infra() {
           <div className="head"><div><span className="chip w lbl">Delivery</span><h2>Five phases, the same at every site</h2></div><p style={{ fontSize: 14.5, color: "var(--mute)", maxWidth: 360 }}>A repeatable process means site 40 is delivered <b style={{ color: "var(--ink)", fontWeight: 500 }}>exactly like site 1.</b> Keep scrolling.</p></div>
           <HTrack>
             <div className="ph5"><span className="n">01</span><h3>Site survey</h3><p>Layouts, power, cabling routes and risks, documented before anything is ordered.</p><div className="tags"><span className="chip">Floor plans</span><span className="chip">Risk log</span></div></div>
-            <div className="ph5 photo" style={{ backgroundImage: "url(/img/whiteglass.jpg)" }}><span className="n">02</span><h3>Plan and schedule</h3><p>Materials, engineers and dates agreed per site, shared with your project lead.</p></div>
+            <div className="ph5 photo" style={{ backgroundImage: "url(/img/whiteglass.webp)" }}><span className="n">02</span><h3>Plan and schedule</h3><p>Materials, engineers and dates agreed per site, shared with your project lead.</p></div>
             <div className="ph5 blue"><span className="n">03</span><h3>Deploy</h3><p>Installation by our engineers, with photos, checklists and a report every evening.</p><div className="tags"><span className="chip glass">Daily reports</span></div></div>
             <div className="ph5"><span className="n">04</span><h3>Test and hand over</h3><p>Every site tested against an agreed checklist and signed off by your team.</p><div className="tags"><span className="chip">Sign-off</span><span className="chip">As-built docs</span></div></div>
-            <div className="ph5 photo" style={{ backgroundImage: "url(/img/dark.jpg)" }}><span className="n">05</span><h3>Support</h3><p>Annual maintenance and on-call help after go-live.</p></div>
+            <div className="ph5 photo" style={{ backgroundImage: "url(/img/dark.webp)" }}><span className="n">05</span><h3>Support</h3><p>Annual maintenance and on-call help after go-live.</p></div>
           </HTrack>
           <div className="prog"><i /></div>
         </div>

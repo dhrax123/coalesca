@@ -136,9 +136,12 @@ export default function Motion() {
         const off = (r.top + r.height / 2 - vh / 2) * s;
         el.style.transform = `translate3d(0,${off.toFixed(1)}px,0)` + (el.dataset.scale ? ` scale(${el.dataset.scale})` : "");
       });
-      raf = requestAnimationFrame(frame);
+      raf = 0;
     };
+    const queue = () => { if (!raf) raf = requestAnimationFrame(frame); };
     frame();
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
 
     // Magnetic buttons + tilt
     const mags = fine && !reduce ? Array.from(document.querySelectorAll<HTMLElement>(".pbtn,.navbtn,.mag")) : [];
@@ -160,6 +163,7 @@ export default function Motion() {
 
     return () => {
       io.disconnect(); io2.disconnect(); cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", queue); window.removeEventListener("resize", queue);
       mags.forEach(m => { m.removeEventListener("pointermove", magMove); m.removeEventListener("pointerleave", magOut); });
       tilts.forEach(t => { t.removeEventListener("pointermove", tMove); t.removeEventListener("pointerleave", tOut); });
     };

@@ -24,7 +24,7 @@ export default function About() {
           <h1><span className="ln"><span>People,</span></span><span className="ln"><span>technology <span className="g">and</span></span></span><span className="ln"><span><span className="g">growth,</span> together</span></span></h1>
           <p className="sub">Coalesca Technologies is a multi-vertical company built to give enterprises <b>skilled talent</b>, <b>dependable infrastructure</b> and <b>measurable growth</b> through one partner.</p>
         </div>
-        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/stepped.jpg)" }} />
+        <div className="ph"><div className="phi" style={{ backgroundImage: "url(/img/stepped.webp)" }} />
           <div className="fc" style={{ "--r": "-3deg", "--d": ".7s", width: 260 } as React.CSSProperties}><div className="t"><span>Coalesca Technologies</span><i style={{ background: "var(--brand)" }} /></div><b>Three services, one contract</b><div className="row" style={{ marginTop: 6 }}><span>Staffing, infrastructure, marketing</span></div></div>
         </div>
       </section>

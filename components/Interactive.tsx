@@ -52,10 +52,11 @@ export function CursorList({ items }: { items: CItem[] }) {
   const prev = useRef<HTMLDivElement>(null);
   const pos = useRef({ x: 0, y: 0, tx: 0, ty: 0 });
   useEffect(() => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
     let raf = 0;
     const loop = () => {
       const p = pos.current; p.x += (p.tx - p.x) * 0.15; p.y += (p.ty - p.y) * 0.15;
-      if (prev.current) { prev.current.style.left = `${p.x}px`; prev.current.style.top = `${p.y}px`; }
+      if (prev.current) prev.current.style.translate = `${p.x}px ${p.y}px`;
       raf = requestAnimationFrame(loop);
     };
     loop(); return () => cancelAnimationFrame(raf);
@@ -65,7 +66,7 @@ export function CursorList({ items }: { items: CItem[] }) {
       <div className="cprev" ref={prev} aria-hidden="true" />
       {items.map((s, k) => (
         <Link href="/contact" className="crow" key={s.t} data-cursor="Plan"
-          onPointerEnter={() => { if (prev.current) { prev.current.style.backgroundImage = `url(/img/${s.img}.jpg)`; prev.current.classList.add("on"); } }}>
+          onPointerEnter={() => { if (prev.current) { prev.current.style.backgroundImage = `url(/img/${s.img}.webp)`; prev.current.classList.add("on"); } }}>
           <span className="n">0{k + 1}</span><h3>{s.t}</h3>
           <div><p>{s.p}</p><div className="tg">{s.tg.map(t => <span key={t}>{t}</span>)}</div></div>
           <span className="ib"><NE /></span>
@@ -111,6 +112,7 @@ export function LitText({ text }: { text: string }) {
   useEffect(() => {
     let raf = 0;
     const loop = () => {
+      raf = 0;
       const sec = ref.current?.closest<HTMLElement>(".lit");
       if (sec && ref.current) {
         const r = sec.getBoundingClientRect(); const vh = window.innerHeight;
@@ -118,9 +120,10 @@ export function LitText({ text }: { text: string }) {
         const n = Math.round(p * words.length);
         ref.current.querySelectorAll(".lw").forEach((w, k) => w.classList.toggle("on", k < n));
       }
-      raf = requestAnimationFrame(loop);
     };
-    loop(); return () => cancelAnimationFrame(raf);
+    const q = () => { if (!raf) raf = requestAnimationFrame(loop); };
+    loop(); window.addEventListener("scroll", q, { passive: true }); window.addEventListener("resize", q);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", q); window.removeEventListener("resize", q); };
   }, [words.length]);
   return <p className="statement" ref={ref}>{words.map((w, k) => <span key={k}><span className="lw">{w}</span>{" "}</span>)}</p>;
 }
@@ -142,5 +145,25 @@ export function JobFilter({ jobs }: { jobs: Job[] }) {
         ))}
       </div>
     </>
+  );
+}
+
+/* ---------- Home: service panels (hover-expand on desktop, folding accordion on touch) ---------- */
+export type Panel = { href: string; img: string; c: string; n: string; chips: string[]; t: string; s: string };
+export function ServicePanels({ items }: { items: Panel[] }) {
+  const [open, setOpen] = useState(0);
+  return (
+    <div className="xpanels rv">
+      {items.map((c, i) => (
+        <Link href={c.href} className={`xp ${i === open ? "on" : ""}`} key={c.t} data-cursor="Explore" aria-expanded={i === open}
+          onClick={e => { if (window.innerWidth <= 1180 && i !== open) { e.preventDefault(); setOpen(i); } }}
+          onMouseEnter={() => { if (window.innerWidth > 1180) setOpen(i); }}>
+          <span className="bg" style={{ backgroundImage: `url(/img/${c.img}.webp)` }} />
+          <span className="top"><span className="num" style={{ background: c.c }}>{c.n}</span><span className="mt">{c.t}</span><span className="ib"><NE /></span></span>
+          <span className="vt">{c.t}</span>
+          <span className="body"><b>{c.t}</b><span className="s">{c.s}</span><span className="chips">{c.chips.map(x => <span className="ochip" key={x}>{x}</span>)}</span></span>
+        </Link>
+      ))}
+    </div>
   );
 }

@@ -134,7 +134,7 @@ export default function Staffing() {
             <p className="lead">Veterans leave service with discipline, process and responsibility under pressure. We place them in permanent roles where those strengths matter most.</p>
             <div className="vfits">{["IT operations", "Network operations centre", "Security operations", "Facility management", "Administration", "Logistics"].map(x => <span key={x}>{x}</span>)}</div>
             <Link href="/contact" className="pbtn l" style={{ marginTop: 36 }}>Hire a veteran<span className="ib"><Arrow /></span></Link></div>
-          <div className="vr" style={{ backgroundImage: "url(/img/towers.jpg)" }}>
+          <div className="vr" style={{ backgroundImage: "url(/img/towers.webp)" }}>
             <div className="stat a"><b>1–2 months</b><small>of the role&apos;s salary, one-time fee</small><span className="tick"><Tick /></span></div>
             <div className="stat"><b>4 steps</b><small>Brief, shortlist, interview, join</small><span className="tick"><Tick /></span></div>
           </div>
